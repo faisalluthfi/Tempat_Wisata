@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../home-screen/home.dart';
 import 'package:travelling/app/widgets/constants.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({Key? key}) : super(key: key);
@@ -13,6 +14,9 @@ class OnboardingScreen extends StatefulWidget {
 class _OnboardingScreenState extends State<OnboardingScreen> {
   final PageController _pageController = PageController(initialPage: 0);
   int currentIndex = 0;
+  int counterButton = 0;
+
+  // List <Widget> buttonStartedList = List.generate(getButtonStarted);
 
   @override
   Widget build(BuildContext context) {
@@ -52,18 +56,19 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             },
             controller: _pageController,
             children: [
-              createPage(
+              CreatePage(
                 image: 'assets/images/introduction-pict/logo-onboardingOne.png',
                 title: Constants.titleOne,
                 description: Constants.descriptionOne,
               ),
-              createPage(
+              CreatePage(
                 image: 'assets/images/introduction-pict/logo-onboardingTwo.png',
                 title: Constants.titleTwo,
                 description: Constants.descriptionTwo,
               ),
-              createPage(
-                image: 'assets/images/introduction-pict/logo-onboardingThree.png',
+              CreatePage(
+                image:
+                    'assets/images/introduction-pict/logo-onboardingThree.png',
                 title: Constants.titleThree,
                 description: Constants.descriptionThree,
               ),
@@ -79,32 +84,43 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           Positioned(
             bottom: 60,
             right: 34,
-            child: Container(
-              child: IconButton(
-                  onPressed: () {
-                    if (currentIndex < 2) {
-                      currentIndex++;
-                      if (currentIndex < 3) {
-                        _pageController.nextPage(
-                            duration: const Duration(milliseconds: 300),
-                            curve: Curves.easeIn);
-                      }
-                    } else {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (_) => const HomePage()));
-                    }
-                  },
-                  icon: const Icon(
-                    Icons.arrow_forward_ios,
-                    size: 24,
-                    color: Colors.white,
-                  )),
-              padding: const EdgeInsets.all(4),
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Constants.primaryColor),
+            child: ElevatedButton(
+              style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all(const Color(0xff1A3C40))),
+              onPressed: () {
+                if (currentIndex < 2) {
+                  currentIndex++;
+                  if (currentIndex < 3) {
+                    _pageController.nextPage(
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeIn,
+                    );
+                  }
+                } else {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => const HomePage()));
+                }
+              },
+              child: currentIndex == 2
+                  ? Text(
+                      "Yuk Mulai",
+                      style: GoogleFonts.poppins(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white,
+                      ),
+                    )
+                  : Text(
+                      "Lanjut",
+                      style: GoogleFonts.poppins(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white,
+                      ),
+                    ),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -112,12 +128,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   Widget _indicator(bool isActive) {
     return AnimatedContainer(
-      duration: const Duration(microseconds: 300),
+      duration: const Duration(
+        milliseconds: 200,
+      ),
+      curve: Curves.easeInOut,
       height: 10.0,
-      width: isActive ? 20 : 8,
+      width: 10.0,
       margin: const EdgeInsets.only(right: 5.0),
       decoration: BoxDecoration(
-        color: Constants.primaryColor,
+        color: isActive ? Constants.primaryColor : Constants.secondaryColor,
         borderRadius: BorderRadius.circular(6),
       ),
     );
@@ -137,12 +156,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 }
 
-class createPage extends StatelessWidget {
+class CreatePage extends StatelessWidget {
   final String image;
   final String title;
   final String description;
 
-  const createPage({
+  const CreatePage({
     Key? key,
     required this.image,
     required this.title,
