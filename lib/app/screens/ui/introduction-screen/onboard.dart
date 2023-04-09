@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../main.dart';
 import '../home-screen/home.dart';
 import 'package:travelling/app/widgets/constants.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -31,7 +32,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             child: InkWell(
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => const HomePage()));
+                    MaterialPageRoute(builder: (_) => const MainPage()));
               },
               child: const Text(
                 'Skip',
@@ -99,7 +100,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   }
                 } else {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => const HomePage()));
+                      MaterialPageRoute(builder: (_) => const MainPage()));
                 }
               },
               child: currentIndex == 2

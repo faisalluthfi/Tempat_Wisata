@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travelling/app/screens/ui/introduction-screen/onboard.dart';
 
 class Constants {
   // Primary Color
@@ -19,10 +20,33 @@ class Constants {
   static var titleThree = "Yuk Jelajahi";
   static var descriptionThree =
       "Yuk kita lihat ada Wisata apa saja di Kota Tangerang";
+}
 
-  List buttonGetStarted = [
-    "Lanjut",
-    "Lanjut",
-    "Yuk, Mulai",
+class TextOnBoarding {
+  final String title;
+  final String description;
+  final String image;
+
+  TextOnBoarding(
+      {required this.title, required this.description, required this.image});
+
+  List<TextOnBoarding> forOnBoard = [
+    TextOnBoarding(
+      title: 'Hai Sobat Tangerang',
+      description:
+          "Aplikasi ini cocok untuk anda yang sedang bingung memilih tempat wisata di Kota Tangerang",
+      image: 'assets/images/introduction-pict/logo-onboardingOne.png',
+    ),
+    TextOnBoarding(
+      title: 'Tempat Wisata',
+      description:
+          "Beberapa Tempat Wisata di Kota Tangerang yang akan dihadirkan pada Aplikasi ini",
+      image: 'assets/images/introduction-pict/logo-onboardingTwo.png',
+    ),
+    TextOnBoarding(
+      title: 'Yuk Jelajahi',
+      description: "Yuk kita lihat ada Wisata apa saja di Kota Tangerang",
+      image: 'assets/images/introduction-pict/logo-onboardingThree.png',
+    ),
   ];
 }

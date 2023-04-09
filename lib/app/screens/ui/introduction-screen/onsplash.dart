@@ -34,7 +34,7 @@ class _SplashScreenState extends State<SplashScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(
-                  'assets/images/introduction-pict/splash-screen.png',
+                  'assets/images/introduction-pict/Gotota-logo.png',
                   height: 250,
                   width: 250,
                 ),
